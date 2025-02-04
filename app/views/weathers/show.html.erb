@@ -1,0 +1,33 @@
+<div>
+  <h1>Check Weather</h1>
+  <%= form_with url: weather_path, method: :get do |form| %>
+    <div>
+      <%= form.label :city, 'City:' %>
+      <%= form.text_field :city %>
+    </div>
+
+    <div>
+      <%= form.label :state, 'State (required only for US):' %>
+      <%= form.text_field :state %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :country, 'Country Code:' %>
+      <%= form.text_field :country %>
+    </div>
+
+    <%= hidden_field_tag :submitted, true %>
+
+    <%= form.submit 'Get Weather' %>
+  <% end %>
+
+  <% if @weather_data %>
+    <div>
+      <h2>Current Weather in <%= @city %></h2>
+      <div>
+        <p>Temperature is <%= @weather_data[:temp] %> °F. </p>
+        <p><%= @weather_data[:description].titleize %>. Feels like <%= @weather_data[:feels_like] %> °F.</p>
+      </div>
+    </div>
+  <% end %>
+</div>
