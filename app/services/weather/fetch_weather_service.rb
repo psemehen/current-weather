@@ -1,5 +1,3 @@
-require "net/http"
-
 module Weather
   class FetchWeatherService
     WEATHER_URI = "https://api.openweathermap.org/data/2.5/weather".freeze

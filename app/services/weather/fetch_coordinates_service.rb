@@ -1,5 +1,3 @@
-require "net/http"
-
 module Weather
   class FetchCoordinatesService
     GEO_URI = "http://api.openweathermap.org/geo/1.0/direct".freeze
