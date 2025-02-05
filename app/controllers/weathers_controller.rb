@@ -1,5 +1,6 @@
 class WeathersController < ApplicationController
   rescue_from FetchCoordinatesService::ApiError, FetchWeatherService::ApiError, with: :handle_api_error
+
   def show
     return unless submitted?
     return unless valid_params?

@@ -1,7 +1,7 @@
-class FetchCoordinatesService
-  require "net/http"
+require "net/http"
 
-  GEO_URI = "http://api.openweathermap.org/geo/1.0/direct"
+class FetchCoordinatesService
+  GEO_URI = "http://api.openweathermap.org/geo/1.0/direct".freeze
   API_KEY = Rails.application.credentials.dig(:openweathermap_api_key)
 
   class ApiError < StandardError; end
@@ -16,8 +16,6 @@ class FetchCoordinatesService
     extract_coordinates(parsed_response)
   rescue Timeout::Error => e
     raise ApiError, "Network error: #{e.message}"
-  rescue JSON::ParserError => e
-    raise ApiError, "Invalid JSON response: #{e.message}"
   end
 
   private
@@ -43,6 +41,8 @@ class FetchCoordinatesService
     raise ApiError, "Empty response from API" if parsed_data.empty?
 
     parsed_data.first
+  rescue JSON::ParserError => e
+    raise ApiError, "Invalid JSON response: #{e.message}"
   end
 
   def uri

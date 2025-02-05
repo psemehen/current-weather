@@ -1,7 +1,7 @@
-class FetchWeatherService
-  require "net/http"
+require "net/http"
 
-  WEATHER_URI = "https://api.openweathermap.org/data/2.5/weather"
+class FetchWeatherService
+  WEATHER_URI = "https://api.openweathermap.org/data/2.5/weather".freeze
   API_KEY = Rails.application.credentials.dig(:openweathermap_api_key)
 
   class ApiError < StandardError; end
