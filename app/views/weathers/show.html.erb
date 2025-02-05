@@ -1,25 +1,7 @@
 <div>
   <h1>Check Weather</h1>
-  <%= form_with model: @form, url: weather_path, method: :get, local: true do |form| %>
-    <div>
-      <%= form.label :city, 'City:' %>
-      <%= form.text_field :city %>
-    </div>
 
-    <div>
-      <%= form.label :state, 'State (required only for US):' %>
-      <%= form.text_field :state %>
-    </div>
-
-    <div class="form-field">
-      <%= form.label :country, 'Country Code:' %>
-      <%= form.text_field :country %>
-    </div>
-
-    <%= hidden_field_tag :submitted, true %>
-
-    <%= form.submit 'Get Weather' %>
-  <% end %>
+  <%= render 'form', form: @form %>
 
   <% if @weather_data %>
     <div>

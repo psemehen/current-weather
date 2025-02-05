@@ -5,9 +5,8 @@ class WeatherQueryForm
 
   validates :city, presence: true
   validates :country, presence: true, length: {is: 2}
-  validates :state, presence: true, if: :us_country?
+  validates :state, presence: true, length: {is: 2}, if: :us_country?
   validates :state, absence: true, unless: :us_country?
-  validate :state_length_if_present
 
   def self.from_params(params)
     new(
@@ -25,11 +24,5 @@ class WeatherQueryForm
 
   def us_country?
     country == "US"
-  end
-
-  def state_length_if_present
-    return if state.blank?
-
-    errors.add(:state, :invalid_length) unless state.length == 2
   end
 end
