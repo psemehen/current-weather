@@ -1,5 +1,5 @@
 class WeathersController < ApplicationController
-  rescue_from FetchCoordinatesService::ApiError, FetchWeatherService::ApiError, with: :handle_api_error
+  rescue_from Weather::OpenweathermapClient::ApiError, with: :handle_api_error
 
   def show
     return unless submitted?
@@ -52,8 +52,8 @@ class WeathersController < ApplicationController
 
   def fetch_weather_data
     location = [@city, @state, @country].compact.join(",")
-    coordinates = FetchCoordinatesService.new(location).call
-    @weather_data = FetchWeatherService.new(coordinates).call
+    coordinates = Weather::FetchCoordinatesService.new(location).call
+    @weather_data = Weather::FetchWeatherService.new(coordinates).call
   end
 
   # To avoid validation on the first page load. Hidden field passed in the form.
