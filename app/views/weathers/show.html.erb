@@ -23,7 +23,7 @@
 
   <% if @weather_data %>
     <div>
-      <h2>Current Weather in <%= @city %></h2>
+      <h2>Current Weather in <%= @form.city %></h2>
       <div>
         <p>Temperature is <%= @weather_data[:temp] %> °F. </p>
         <p><%= @weather_data[:description].titleize %>. Feels like <%= @weather_data[:feels_like] %> °F.</p>

@@ -1,5 +1,5 @@
 module Weather
-  class FetchCoordinatesService
+  class CoordinatesFetcher
     GEO_URI = "http://api.openweathermap.org/geo/1.0/direct".freeze
 
     def initialize(location)

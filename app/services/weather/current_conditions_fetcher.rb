@@ -1,5 +1,5 @@
 module Weather
-  class FetchWeatherService
+  class CurrentConditionsFetcher
     WEATHER_URI = "https://api.openweathermap.org/data/2.5/weather".freeze
 
     def initialize(coordinates)
