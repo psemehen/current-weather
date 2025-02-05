@@ -4,7 +4,7 @@ class WeatherQueryForm
   attr_accessor :city, :state, :country
 
   validates :city, presence: true
-  validates :country, presence: true, length: { is: 2 }
+  validates :country, presence: true, length: {is: 2}
   validates :state, presence: true, if: :us_country?
   validates :state, absence: true, unless: :us_country?
   validate :state_length_if_present

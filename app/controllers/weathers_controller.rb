@@ -23,8 +23,12 @@ class WeathersController < ApplicationController
   end
 
   def fetch_weather_data
-    coordinates = Weather::FetchCoordinatesService.new(@form.location).call
-    @weather_data = Weather::FetchWeatherService.new(coordinates).call
+    cache_key = "#{WeatherSettings.cache_key_prefix}/#{@form.location}"
+
+    @weather_data = Rails.cache.fetch(cache_key, expires_in: WeatherSettings.cache_expiration) do
+      coordinates = Weather::FetchCoordinatesService.new(@form.location).call
+      Weather::FetchWeatherService.new(coordinates).call
+    end
   end
 
   def handle_api_error(e)
