@@ -6,8 +6,7 @@ RSpec.describe WeathersController, type: :controller do
       weather_query_form: {
         city: "New York",
         state: "NY",
-        country: "US",
-        submitted: "true"
+        country: "US"
       }
     }
   end
@@ -16,8 +15,7 @@ RSpec.describe WeathersController, type: :controller do
     {
       weather_query_form: {
         city: "",
-        country: "USA",
-        submitted: "true"
+        country: "USA"
       }
     }
   end
@@ -91,7 +89,7 @@ RSpec.describe WeathersController, type: :controller do
 
   describe "form submission handling" do
     it "detects form submission" do
-      post :show, params: {weather_query_form: {submitted: "true"}}
+      post :show, params: {weather_query_form: {city: "Lviv", country: "UA"}}
       expect(controller.send(:form_submitted?)).to be true
     end
 
